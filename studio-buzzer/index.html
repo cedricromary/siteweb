@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quizmas – Maquette</title>
 <meta name="description" content="Maquette de démonstration : landing page Quizmas, calendrier de l'avent d'un quiz immersif.">
@@ -185,6 +184,42 @@ input[aria-invalid="true"]{border-color:var(--coral)}
 @media (max-width:1000px){.book-grid{grid-template-columns:1fr 1fr}.book-grid .picker:last-child{grid-column:1/-1}}
 @media (max-width:860px){.links{display:none}.book-grid{grid-template-columns:1fr}.book{padding:24px 18px}}
 
+
+/* chips, programme, prix, cadeau */
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:22px 0 0}
+.chips li{border:1.5px solid var(--muted);border-radius:99px;padding:6px 14px;font-weight:500;font-size:.88rem}
+.chips.big li{font-size:1rem;padding:10px 20px;border-color:var(--yellow);color:var(--yellow)}
+.mnav{display:flex;align-items:center;gap:8px}
+.mnav button{width:34px;height:34px;border-radius:50%;border:2px solid var(--navy-3);background:var(--navy);color:var(--ice);display:grid;place-items:center;cursor:pointer;touch-action:manipulation;transition:border-color .15s ease,opacity .15s ease}
+.mnav button[disabled]{opacity:.3;cursor:not-allowed}
+@media (hover:hover) and (pointer:fine){.mnav button:not([disabled]):hover{border-color:var(--yellow)}}
+.price{display:flex;align-items:baseline;gap:10px;margin-top:18px;padding:14px 18px;border-radius:16px;background:var(--navy);border:1px dashed var(--yellow)}
+.price strong{font-family:var(--display);font-size:2rem;color:var(--yellow);font-weight:400}
+.price span{color:var(--muted);font-weight:500}
+.prog{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.pcard{background:var(--navy-2);border:1px solid var(--navy-3);border-radius:24px;padding:26px 24px;position:relative;overflow:hidden}
+.pcard::before{content:"";position:absolute;left:0;top:0;width:100%;height:6px;background:var(--yellow)}
+.pcard:nth-child(2)::before{background:var(--coral)}
+.pcard .pn{font-family:var(--display);font-size:2.6rem;color:var(--yellow);opacity:.9;line-height:1}
+.pcard h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:1.6rem;margin:8px 0}
+.pcard p{color:var(--muted)}
+.who{margin-top:44px}
+.who h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:1.6rem}
+.who .chips{margin-top:14px}
+.gift{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;margin-top:110px}
+.gift .buzzer{margin-top:26px}
+.amounts{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.amounts button{border:2px solid var(--navy-3);background:var(--navy-2);color:var(--ice);border-radius:18px;padding:12px 20px;font:500 .9rem var(--body);cursor:pointer;display:grid;gap:2px;text-align:left;transition:background-color .15s ease,color .15s ease,border-color .15s ease;touch-action:manipulation}
+.amounts button b{font-family:var(--display);font-weight:400;font-size:1.7rem;color:var(--yellow)}
+.amounts button[aria-pressed="true"]{background:var(--yellow);color:var(--navy);border-color:var(--yellow)}
+.amounts button[aria-pressed="true"] b{color:var(--navy)}
+.gcard{background:var(--yellow);color:var(--navy);border-radius:28px;padding:30px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;transform:rotate(-3deg);box-shadow:0 24px 50px rgba(0,0,0,.4)}
+.gcard .gtop{font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.85rem}
+.gcard .gamt{font-family:var(--display);font-size:5.5rem;line-height:1}
+.gcard .gbot{font-weight:500}
+@media (max-width:1000px){.prog{grid-template-columns:1fr 1fr}.links{gap:16px;font-size:.9rem}}
+@media (max-width:860px){.prog{grid-template-columns:1fr}.gift{grid-template-columns:1fr;gap:34px}.gcard{transform:none}}
+
 /* reveal once */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease-expo),transform .7s var(--ease-expo)}
 .rv.in{opacity:1;transform:none}
@@ -215,7 +250,9 @@ input[aria-invalid="true"]{border-color:var(--coral)}
       <div class="links">
         <a href="#comment">Comment ça marche</a>
         <a href="#reserver">Réserver</a>
-        <a href="#calendrier">Quizmas</a>
+        <a href="#programme">Programme</a>
+        <a href="#calendrier">Calendrier</a>
+        <a href="#cadeau">Carte cadeau</a>
         <a href="#equipes">Équipes</a>
         <a href="#faq">FAQ</a>
       </div>
@@ -223,31 +260,32 @@ input[aria-invalid="true"]{border-color:var(--coral)}
     </nav>
     <div class="hero-grid">
       <div>
-        <span class="kicker">Du 1er au 25 décembre</span>
+        <span class="kicker">Du 18 novembre au 31 décembre</span>
         <h1><span>Quiz</span><span class="y">mas.</span></h1>
-        <p class="lead">Un quiz de Noël sur plateau télé. Chaque jour, <b>le vainqueur du jour repart avec un cadeau surprise.</b></p>
+        <p class="lead">Un quiz de Noël sur plateau télé : films, chants, traditions et cadeaux improbables. <b>25 € par joueur</b>, de 2 à 10 joueurs.</p>
         <div class="cta-row">
           <a class="buzzer" href="#reserver">Je réserve ma partie</a>
-          <a class="link-sec" href="#calendrier">Voir le calendrier</a>
+          <a class="link-sec" href="#programme">Voir le programme</a>
         </div>
+        <ul class="chips" aria-label="Pour qui ?"><li>En famille</li><li>Entre amis</li><li>Afterwork</li><li>Soirée d'entreprise</li></ul>
       </div>
       <aside class="count" aria-label="Compte à rebours avant le début de Quizmas">
-        <p class="t">Ouverture de la 1ère case dans</p>
+        <p class="t">Début de Quizmas dans</p>
         <div class="digits" role="timer" aria-live="off">
           <div><strong id="d">--</strong><small>jours</small></div>
           <div><strong id="h">--</strong><small>heures</small></div>
           <div><strong id="m">--</strong><small>min</small></div>
           <div><strong id="s">--</strong><small>sec</small></div>
         </div>
-        <p class="note">Un cadeau tous les jours jusqu'au 25.</p>
+        <p class="note">Du 18 novembre au 31 décembre, dans tous les centres.</p>
       </aside>
     </div>
   </div>
 </header>
 
 <div class="marquee" aria-hidden="true"><div>
-  <span>Quizmas ★</span><span>Un cadeau par jour ★</span><span>6 pupitres ★</span><span>Questions loufoques ★</span><span>Jokers pour piéger vos amis ★</span>
-  <span>Quizmas ★</span><span>Un cadeau par jour ★</span><span>6 pupitres ★</span><span>Questions loufoques ★</span><span>Jokers pour piéger vos amis ★</span>
+  <span>Quizmas ★</span><span>18 nov. – 31 déc. ★</span><span>25 € par joueur ★</span><span>Cadeau du jour ★</span><span>Jokers pour piéger vos amis ★</span>
+  <span>Quizmas ★</span><span>18 nov. – 31 déc. ★</span><span>25 € par joueur ★</span><span>Cadeau du jour ★</span><span>Jokers pour piéger vos amis ★</span>
 </div></div>
 
 <main>
@@ -266,14 +304,21 @@ input[aria-invalid="true"]{border-color:var(--coral)}
   <section id="reserver">
     <div class="wrap">
       <h2 class="rv">Réservez votre <em>partie Quizmas</em></h2>
-      <p class="sub rv">Choisissez un jour en décembre, un créneau et le nombre de joueurs. Vous recevez la confirmation par e-mail.</p>
+      <p class="sub rv">Choisissez un jour entre le 18 novembre et le 31 décembre, un créneau et le nombre de joueurs. Vous recevez la confirmation par e-mail.</p>
       <form class="book rv" id="book" novalidate>
         <div class="book-grid">
           <div class="picker" aria-labelledby="pk-day">
-            <div class="pk-head"><h3 id="pk-day">1. Le jour</h3><span class="month">Décembre 2026</span></div>
+            <div class="pk-head">
+              <h3 id="pk-day">1. Le jour</h3>
+              <div class="mnav">
+                <button type="button" id="mprev" aria-label="Mois précédent"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M9 2 4 7l5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <span class="month" id="mlabel" aria-live="polite">Novembre 2026</span>
+                <button type="button" id="mnext" aria-label="Mois suivant"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="m5 2 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+            </div>
             <div class="dow" aria-hidden="true"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
             <div class="days" id="days"></div>
-            <p class="small">Quizmas se joue du 1er au 25 décembre.</p>
+            <p class="small">Quizmas se joue du 18 novembre au 31 décembre.</p>
           </div>
           <div class="picker" aria-labelledby="pk-slot">
             <h3 id="pk-slot">2. Le créneau</h3>
@@ -283,9 +328,9 @@ input[aria-invalid="true"]{border-color:var(--coral)}
               <button type="button" id="minus" aria-label="Moins de joueurs">−</button>
               <output id="players" aria-live="polite">4</output>
               <button type="button" id="plus" aria-label="Plus de joueurs">+</button>
-              <span class="small">joueurs</span>
+              <span class="small">joueurs (2 à 10)</span>
             </div>
-            <p class="small">Un pupitre accueille une équipe. Jusqu'à 6 pupitres par partie.</p>
+            <div class="price"><strong>25 €</strong><span>par joueur</span></div>
           </div>
           <div class="picker" aria-labelledby="pk-you">
             <h3 id="pk-you">4. Vos coordonnées</h3>
@@ -299,8 +344,25 @@ input[aria-invalid="true"]{border-color:var(--coral)}
           <p id="recap" aria-live="polite">Choisissez un jour et un créneau.</p>
           <button class="buzzer" type="submit">Je réserve</button>
         </div>
-        <p class="small note-form" id="formnote">Prix, durée et horaires affichés : à confirmer. L'envoi de la demande est à brancher.</p>
+        <p class="small note-form" id="formnote">Prix, dates et nombre de joueurs : chiffres du brief, à confirmer. Durée et horaires : hypothèses. L'envoi de la demande est à brancher.</p>
       </form>
+    </div>
+  </section>
+
+  <section id="programme">
+    <div class="wrap">
+      <h2 class="rv">Au <em>programme</em></h2>
+      <p class="sub rv">Un quiz spécial Noël, avec des questions pour toute la tablée.</p>
+      <div class="prog">
+        <article class="pcard rv"><span class="pn">01</span><h3>Films de Noël</h3><p>Les classiques que tout le monde a vus, ou prétend avoir vus.</p></article>
+        <article class="pcard rv"><span class="pn">02</span><h3>Chants</h3><p>Les refrains qu'on connaît tous, même quand on ne l'avoue pas.</p></article>
+        <article class="pcard rv"><span class="pn">03</span><h3>Traditions</h3><p>Dinde, bûche, sapin : ce qu'on fait vraiment le 24.</p></article>
+        <article class="pcard rv"><span class="pn">04</span><h3>Cadeaux improbables</h3><p>Les présents les plus étonnants, sans filet.</p></article>
+      </div>
+      <div class="who rv">
+        <h3>Pour qui ?</h3>
+        <ul class="chips big"><li>Familles</li><li>Groupes d'amis</li><li>Afterworks</li><li>Soirées d'entreprise</li></ul>
+      </div>
     </div>
   </section>
 
@@ -309,9 +371,9 @@ input[aria-invalid="true"]{border-color:var(--coral)}
       <div class="cal-head">
         <div>
           <h2 class="rv">Le calendrier <em>Quizmas</em></h2>
-          <p class="sub rv">Chaque jour de décembre, le cadeau revient au vainqueur du jour : le pupitre qui termine avec le meilleur score. Touchez une case pour voir un exemple de lot.</p>
+          <p class="sub rv">Du 1er au 25 décembre, chaque jour, le cadeau revient au vainqueur du jour : le pupitre qui termine avec le meilleur score. Touchez une case pour voir un exemple de lot.</p>
         </div>
-        <p class="hint">Lots d'exemple, à confirmer.</p>
+        <p class="hint">Principe et lots d'exemple : à valider.</p>
       </div>
       <div class="cal" id="cal"></div>
     </div>
@@ -339,9 +401,32 @@ input[aria-invalid="true"]{border-color:var(--coral)}
         <div>
           <h2>Votre soirée de Noël <em style="color:var(--navy);text-decoration:underline;text-decoration-color:var(--coral);text-underline-offset:8px">en équipe</em></h2>
           <p>Un format clé en main pour les équipes, avec un animateur et un thème sur mesure.</p>
-          <ul><li>De 6 joueurs à toute une équipe, en plusieurs manches</li><li>Questions adaptées à votre entreprise</li><li>Un cadeau pour le pupitre gagnant</li></ul>
+          <ul><li>Afterworks et soirées d'entreprise, en plusieurs manches</li><li>Questions adaptées à votre entreprise</li><li>Tarif groupe : à confirmer</li></ul>
         </div>
         <div><button class="buzzer" type="button" data-buzz>Demander un devis</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cadeau">
+    <div class="wrap">
+      <div class="gift rv">
+        <div>
+          <h2>Offrez <em>une partie</em></h2>
+          <p class="sub">Une idée de cadeau de dernière minute : la carte cadeau, valable pour une partie Quizmas ou un autre quiz.</p>
+          <div class="amounts" role="group" aria-label="Choisir un montant">
+            <button type="button" aria-pressed="false" data-amt="25">1 joueur<b>25 €</b></button>
+            <button type="button" aria-pressed="true" data-amt="50">2 joueurs<b>50 €</b></button>
+            <button type="button" aria-pressed="false" data-amt="100">4 joueurs<b>100 €</b></button>
+          </div>
+          <button class="buzzer" type="button" data-buzz>Offrir cette carte</button>
+          <p class="small">Montants d'exemple calculés sur 25 € par joueur. Conditions de la carte cadeau : à confirmer.</p>
+        </div>
+        <div class="gcard" aria-hidden="true">
+          <span class="gtop">Carte cadeau</span>
+          <span class="gamt" id="giftamt">50 €</span>
+          <span class="gbot">Une partie entre amis</span>
+        </div>
       </div>
     </div>
   </section>
@@ -351,10 +436,12 @@ input[aria-invalid="true"]{border-color:var(--coral)}
       <h2 class="rv">Questions <em>fréquentes</em></h2>
       <div class="faq rv">
         <details><summary>Comment se déroule une partie ?</summary><p>Vous jouez autour de pupitres équipés de buzzers, avec des scores en direct, comme sur un plateau télé. Des jokers permettent de piéger les autres équipes.</p></details>
-        <details><summary>Qui peut jouer ?</summary><p>Le jeu s'adresse à un large public, de 8 à 88 ans : en famille, entre amis ou entre collègues. Âge minimum et conditions : à confirmer.</p></details>
-        <details><summary>Qui gagne le cadeau Quizmas ?</summary><p>Chaque jour du 1er au 25 décembre, le cadeau revient au vainqueur du jour, c'est-à-dire le pupitre qui a le meilleur score. Règlement complet : à publier.</p></details>
-        <details><summary>Combien de joueurs, combien de temps ?</summary><p>Une partie accueille jusqu'à 6 pupitres. Durée, prix et nombre de joueurs par pupitre : à confirmer.</p></details>
-        <details><summary>Puis-je venir avec mon entreprise ?</summary><p>Oui, une offre équipe existe avec animateur et thème sur mesure. Utilisez la demande de devis ci-dessus.</p></details>
+        <details><summary>Combien ça coûte ?</summary><p>25 € par joueur, de 2 à 10 joueurs. Chiffres du brief, à confirmer.</p></details>
+        <details><summary>Quand peut-on jouer à Quizmas ?</summary><p>Du 18 novembre au 31 décembre 2026, dans tous les centres. Durée d'une partie et horaires : à confirmer.</p></details>
+        <details><summary>Qui peut jouer ?</summary><p>Le jeu s'adresse à un large public, de 8 à 88 ans : en famille, entre amis, en afterwork ou en soirée d'entreprise. Âge minimum : à confirmer.</p></details>
+        <details><summary>Comment offrir une partie ?</summary><p>Avec la carte cadeau : une idée de dernière minute à offrir pour Noël. Modalités d'achat et validité : à confirmer.</p></details>
+        <details><summary>Qui gagne le cadeau du jour ?</summary><p>Du 1er au 25 décembre, le cadeau revient au vainqueur du jour, c'est-à-dire le pupitre qui a le meilleur score. Règlement complet : à publier.</p></details>
+        <details><summary>Puis-je venir avec mon entreprise ?</summary><p>Oui : afterworks et soirées d'entreprise, avec animateur et thème sur mesure. Utilisez la demande de devis ci-dessus.</p></details>
         <details><summary>Comment modifier ou annuler ma réservation ?</summary><p>Conditions d'annulation : à compléter.</p></details>
       </div>
     </div>
@@ -370,7 +457,7 @@ input[aria-invalid="true"]{border-color:var(--coral)}
 <script>
 (function(){
   /* countdown */
-  var target = new Date('2026-12-01T00:00:00+01:00').getTime();
+  var target = new Date('2026-11-18T00:00:00+01:00').getTime();
   var el = {d:document.getElementById('d'),h:document.getElementById('h'),m:document.getElementById('m'),s:document.getElementById('s')};
   function pad(n){return String(n).padStart(2,'0')}
   function tick(){
@@ -401,33 +488,51 @@ input[aria-invalid="true"]{border-color:var(--coral)}
     items.forEach(function(n){io.observe(n)});
   } else { items.forEach(function(n){n.classList.add('in')}) }
 
-  /* réservation — hypothèses à confirmer, regroupées ici */
-  var BOOK={year:2026,month:11,firstDay:1,lastDay:25,slots:['12:00','14:30','17:00','19:30','21:30'],minPlayers:2,maxPlayers:12};
-  var state={day:null,slot:null,players:4};
+  /* réservation — chiffres du brief + hypothèses, regroupés ici */
+  var BOOK={start:new Date(2026,10,18),end:new Date(2026,11,31),price:25,minPlayers:2,maxPlayers:10,
+            slots:['12:00','14:30','17:00','19:30','21:30']};
+  var MONTHS=[{y:2026,m:10},{y:2026,m:11}];
+  var state={date:null,slot:null,players:4,mi:0};
   var daysEl=document.getElementById('days'), slotsEl=document.getElementById('slots');
   var recap=document.getElementById('recap'), playersEl=document.getElementById('players');
+  var mlabel=document.getElementById('mlabel'), mprev=document.getElementById('mprev'), mnext=document.getElementById('mnext');
 
-  function label(d){return new Date(BOOK.year,BOOK.month,d).toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}
+  function label(dt){return dt.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}
+  function iso(y,m,d){return y+'-'+pad(m+1)+'-'+pad(d)}
+  function total(){return state.players*BOOK.price}
   function updateRecap(){
     recap.classList.remove('ok');
-    if(state.day&&state.slot){recap.textContent=label(state.day)+' · '+state.slot+' · '+state.players+' joueurs'}
-    else if(state.day){recap.textContent=label(state.day)+' · choisissez un créneau'}
-    else{recap.textContent='Choisissez un jour et un créneau.'}
+    if(state.date&&state.slot){recap.textContent=label(state.date)+' \u00b7 '+state.slot+' \u00b7 '+state.players+' joueurs \u00b7 '+total()+' \u20ac'}
+    else if(state.date){recap.textContent=label(state.date)+' \u00b7 choisissez un cr\u00e9neau'}
+    else{recap.textContent='Choisissez un jour et un cr\u00e9neau.'}
   }
-  var offset=(new Date(BOOK.year,BOOK.month,1).getDay()+6)%7, total=new Date(BOOK.year,BOOK.month+1,0).getDate();
-  for(var k=0;k<offset;k++){daysEl.appendChild(document.createElement('span'))}
-  for(var d=1;d<=total;d++){
-    var db=document.createElement('button'); db.type='button'; db.textContent=d; db.setAttribute('aria-pressed','false');
-    db.dataset.day=d;
-    if(d<BOOK.firstDay||d>BOOK.lastDay){db.disabled=true} else {db.setAttribute('aria-label',label(d))}
-    if(d===25)db.classList.add('xmas');
-    daysEl.appendChild(db);
+  function renderMonth(){
+    var mo=MONTHS[state.mi], y=mo.y, m=mo.m;
+    daysEl.innerHTML='';
+    mlabel.textContent=new Date(y,m,1).toLocaleDateString('fr-FR',{month:'long',year:'numeric'}).replace(/^./,function(c){return c.toUpperCase()});
+    mprev.disabled=state.mi===0; mnext.disabled=state.mi===MONTHS.length-1;
+    var offset=(new Date(y,m,1).getDay()+6)%7, total_=new Date(y,m+1,0).getDate();
+    for(var k=0;k<offset;k++){daysEl.appendChild(document.createElement('span'))}
+    for(var d=1;d<=total_;d++){
+      var dt=new Date(y,m,d), b=document.createElement('button');
+      b.type='button'; b.textContent=d; b.dataset.iso=iso(y,m,d);
+      var sel=state.date&&state.date.getTime()===dt.getTime();
+      b.setAttribute('aria-pressed',sel?'true':'false');
+      if(dt<BOOK.start||dt>BOOK.end){b.disabled=true}else{b.setAttribute('aria-label',label(dt))}
+      if(m===11&&d===25)b.classList.add('xmas');
+      daysEl.appendChild(b);
+    }
   }
   daysEl.addEventListener('click',function(e){
-    var b=e.target.closest('button[data-day]'); if(!b||b.disabled)return;
+    var b=e.target.closest('button[data-iso]'); if(!b||b.disabled)return;
+    var p=b.dataset.iso.split('-'); state.date=new Date(+p[0],+p[1]-1,+p[2]);
     daysEl.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false')});
-    b.setAttribute('aria-pressed','true'); state.day=+b.dataset.day; updateRecap();
+    b.setAttribute('aria-pressed','true'); updateRecap();
   });
+  mprev.addEventListener('click',function(){if(state.mi>0){state.mi--;renderMonth()}});
+  mnext.addEventListener('click',function(){if(state.mi<MONTHS.length-1){state.mi++;renderMonth()}});
+  renderMonth();
+
   BOOK.slots.forEach(function(t){
     var sb=document.createElement('button'); sb.type='button'; sb.textContent=t; sb.setAttribute('aria-pressed','false'); sb.dataset.slot=t;
     slotsEl.appendChild(sb);
@@ -446,12 +551,19 @@ input[aria-invalid="true"]{border-color:var(--coral)}
     e.preventDefault();
     var nom=form.elements.nom, mail=form.elements.email, bad=[];
     [nom,mail].forEach(function(f){var ko=!f.value.trim()||(f.type==='email'&&!/^\S+@\S+\.\S+$/.test(f.value));f.setAttribute('aria-invalid',ko);if(ko)bad.push(f)});
-    if(!state.day||!state.slot){recap.textContent='Il manque un jour et un créneau.';return}
-    if(bad.length){recap.textContent='Vérifiez votre nom et votre e-mail.';bad[0].focus();return}
+    if(!state.date||!state.slot){recap.textContent='Il manque un jour et un cr\u00e9neau.';return}
+    if(bad.length){recap.textContent='V\u00e9rifiez votre nom et votre e-mail.';bad[0].focus();return}
     recap.classList.add('ok');
-    recap.textContent='Demande prête : '+label(state.day)+' · '+state.slot+' · '+state.players+' joueurs.';
-    note.textContent='Maquette : aucune donnée n’a été envoyée. L’envoi vers votre outil de réservation reste à brancher.';
+    recap.textContent='Demande pr\u00eate : '+label(state.date)+' \u00b7 '+state.slot+' \u00b7 '+state.players+' joueurs \u00b7 '+total()+' \u20ac.';
+    note.textContent='Maquette : aucune donn\u00e9e n\u2019a \u00e9t\u00e9 envoy\u00e9e. L\u2019envoi vers votre outil de r\u00e9servation reste \u00e0 brancher.';
   });
+
+  /* carte cadeau : montant d'exemple */
+  var amts=document.querySelectorAll('.amounts button'), giftamt=document.getElementById('giftamt');
+  amts.forEach(function(b){b.addEventListener('click',function(){
+    amts.forEach(function(x){x.setAttribute('aria-pressed','false')});
+    b.setAttribute('aria-pressed','true'); giftamt.textContent=b.dataset.amt+' \u20ac';
+  })});
 
   /* buzzers: démo uniquement */
   document.querySelectorAll('[data-buzz]').forEach(function(b){
